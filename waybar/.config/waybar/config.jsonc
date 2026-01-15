@@ -1,0 +1,39 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 32, // Slightly taller to give the pills breathing room
+    "spacing": 0,
+    "modules-left": ["niri/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "tray"],
+
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "○",
+            "focused": "●",
+            "active": "●"
+        }
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}", 
+        "format-alt": "{:%a, %b %d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "cpu": { "format": "cpu. {usage}%" },
+    "memory": { "format": "ram. {used:0.1f}G" },
+
+    "pulseaudio": {
+        "format": "vol. {volume}%",
+        "format-muted": "vol. muted",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    }
+}

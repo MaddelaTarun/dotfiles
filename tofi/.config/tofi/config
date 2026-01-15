@@ -1,0 +1,14 @@
+width = 100%
+height = 100%
+border-width = 0
+outline-width = 0
+padding-left = 35%
+padding-top = 35%
+result-spacing = 25
+num-results = 5
+font = "FiraCode Nerd Font"
+font-size = 22
+background-color = #141415E6 
+text-color = #cdcdcd         
+selection-color = #d8647e
+
