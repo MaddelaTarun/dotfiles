@@ -81,3 +81,11 @@ window#waybar {
 #tray > .passive, #tray > .active, #tray > .needs-attention {
     margin: 0 4px;
 }
+
+#custom-power {
+    background-color: #2A2A2D;
+    color: #ffffff;
+    margin: 4px 10px 4px 0;
+    padding: 0 12px;
+    border-radius: 12px;
+}
