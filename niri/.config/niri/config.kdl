@@ -266,7 +266,8 @@ spawn-at-startup "swaybg" "-i" "/home/t/Pictures/cloud2.jpg" "-m" "fill"
 spawn-at-startup "nm-applet" "--indicator"
 // Sync the environment variables with the system D-Bus
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "GNOME_SETUP_DISPLAY"
-
+// This triggers 'clip-manager out' every time the clipboard changes
+spawn-at-startup "wl-paste" "--watch" "clip-manager" "out"
 // Restart the portals so they see Niri is active
 spawn-sh-at-startup "systemctl --user restart xdg-desktop-portal-wlr xdg-desktop-portal"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -348,6 +349,7 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
+    Mod+Y { spawn "clip-manager" "sel"; }
     Mod+E { spawn "/home/t/.local/bin/powermenu"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" {  spawn "fish" "-c" "tofi-drun --drun-launch=true || pkill tofi-drun";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
