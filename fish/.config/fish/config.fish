@@ -20,5 +20,3 @@ set -gx GNOME_SETUP_DISPLAY :0
 
 # Force OBS and other Qt apps to use Wayland
 set -gx OBS_USE_WAYLAND 1
-
-abbr -a n "niri --session"
