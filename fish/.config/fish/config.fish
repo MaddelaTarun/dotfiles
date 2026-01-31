@@ -1,5 +1,5 @@
 alias tmux "tmux -u"
-
+alias vi "nvim"
 
 # Exa Config
 
