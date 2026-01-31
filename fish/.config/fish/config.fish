@@ -1,3 +1,6 @@
+alias tmux "tmux -u"
+
+
 # Exa Config
 
 if type -q exa
