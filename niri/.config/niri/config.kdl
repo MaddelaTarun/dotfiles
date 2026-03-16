@@ -350,7 +350,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
     Mod+Y { spawn "clip-manager" "sel"; }
-    Mod+E { spawn "/home/t/.local/bin/powermenu"; }
+    Mod+E { spawn "/home/t/.local/bin/scripts/powermenu"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" {  spawn "fish" "-c" "tofi-drun --drun-launch=true || pkill tofi-drun";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
