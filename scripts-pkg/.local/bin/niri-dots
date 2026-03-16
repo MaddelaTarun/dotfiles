@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# 1. Get the focused window ID
+focused_id=$(niri msg --json focused-window | jq -r '.id' 2>/dev/null)
+
+# 2. Get all windows, but we must sort them by their COLUMN position, then their WINDOW position
+# This is the secret to matching the visual "left-to-right" strip.
+windows=$(niri msg --json windows | jq -c 'sort_by(.x, .y)')
+
+# 3. Build the dots
+dots=""
+count=$(echo "$windows" | jq 'length')
+
+if [ "$count" -gt 0 ]; then
+    for ((i=0; i<count; i++)); do
+        id=$(echo "$windows" | jq -r ".[$i].id")
+        if [[ "$id" == "$focused_id" ]]; then
+            dots+="● "
+        else
+            dots+="○ "
+        fi
+    done
+fi
+
+# 4. Output
+echo "{\"text\": \"$(echo $dots | xargs)\"}"

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Power menu script using tofi
+CHOSEN=$(printf "Lock\nSuspend\nReboot\nShutdown\nLog Out" | tofi --config "$HOME"/.config/tofi/powermenu-config)
+
+case "$CHOSEN" in
+    "Lock") 
+        swaylock ;; # Or your preferred locker
+    "Suspend") 
+        systemctl suspend ;;
+    "Reboot") 
+        systemctl reboot ;;
+    "Shutdown") 
+        systemctl poweroff ;;
+    "Log Out") 
+        niri msg action quit ;; # Updated for Niri
+    *) 
+        exit 1 ;;
+esac
