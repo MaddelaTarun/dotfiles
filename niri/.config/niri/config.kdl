@@ -11,8 +11,8 @@ prefer-no-csd
 
 
 environment {
-    XCURSOR_THEME "GoogleDot-White"
-    XCURSOR_SIZE "16"
+    XCURSOR_THEME "Notwaita-White"
+    XCURSOR_SIZE "20"
     GTK_THEME "Vimix-Dark-compact-doder"
 }
 
@@ -82,8 +82,8 @@ input {
 }
 
 cursor {
-    xcursor-theme "GoogleDot-White"
-    xcursor-size 16
+    xcursor-theme "Notwaita-White"
+    xcursor-size 20
 }
 
 
