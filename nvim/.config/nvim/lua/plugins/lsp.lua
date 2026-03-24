@@ -45,7 +45,7 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Configuration for JavaScript / TypeScript
-      vim.lsp.config("ts_ls", {
+      vim.lsp.config("tsserver", {
         capabilities = capabilities,
         -- Default filetypes for JS/TS
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
