@@ -1,16 +1,26 @@
 return {
+    {
+	"neovim/nvim-lspconfig",
+	dependencies = {
+	    "williamboman/mason.nvim",
+	    "williamboman/mason-lspconfig.nvim",
+	    "hrsh7th/nvim-cmp",
+	    "hrsh7th/cmp-nvim-lsp",
+	    "hrsh7th/cmp-buffer",
+	    "hrsh7th/cmp-path",
+
   {
-    "neovim/nvim-lspconfig",
+    "L3MON4D3/LuaSnip",
     dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/nvim-cmp",         -- Autocomplete Engine
-      "hrsh7th/cmp-nvim-lsp",     -- Bridge for LSP
-      "hrsh7th/cmp-buffer",       -- Complete from current file
-      "hrsh7th/cmp-path",         -- Complete file paths
-      "L3MON4D3/LuaSnip",         -- Snippets (Required)
-      "saadparwaiz1/cmp_luasnip", 
+      "rafamadriz/friendly-snippets",
     },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
+
+  "saadparwaiz1/cmp_luasnip",
+},
     config = function()
       -- 1. Setup Mason
       require("mason").setup()
@@ -45,7 +55,7 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Configuration for JavaScript / TypeScript
-      vim.lsp.config("tsserver", {
+      vim.lsp.config("ts_ls", {
         capabilities = capabilities,
         -- Default filetypes for JS/TS
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
