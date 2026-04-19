@@ -9,7 +9,7 @@ return {
       vim.g.mellow_italic_comments = false
       vim.g.mellow_italic_keywords = false
       vim.g.mellow_italic_variables = false
-      vim.cmd([[colorscheme mellow]])
+      -- vim.cmd([[colorscheme mellow]])
     end,
   },
   { "craftzdog/solarized-osaka.nvim", lazy = false },
