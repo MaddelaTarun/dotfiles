@@ -32,6 +32,3 @@ set -gx OBS_USE_WAYLAND 1
 
 set -g fish_key_bindings fish_vi_key_bindings
 
-# NVIM Config Aliases
-
-alias nvim-test "NVIM_APPNAME=nvim-test nvim"
