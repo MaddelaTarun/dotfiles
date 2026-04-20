@@ -29,6 +29,7 @@ require("lazy").setup({
     { import = "tarun.plugins" },
     -- Imports all files from lua/plugins/*.lua (if needed)
     -- { import = "plugins" },
+    { import = "tarun.plugins.lsp" }
   },
   -- Configure any other settings here.
   install = { colorscheme = { "habamax" } },

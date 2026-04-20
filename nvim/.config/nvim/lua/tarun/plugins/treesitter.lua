@@ -10,9 +10,33 @@ return {
 
             -- ensure these languages parsers are installed
             local ensure_installed = {
-                "json", "javascript", "typescript", "tsx", "go", "yaml", "html", "css", "python",
-                "http", "prisma", "markdown", "markdown_inline", "svelte", "graphql", "bash", "fish", "lua", "vim", "dockerfile",
-                "gitignore", "query", "vimdoc", "c", "java", "rust", "ron",
+                "json",
+                "javascript",
+                "typescript",
+                "tsx",
+                "go",
+                "yaml",
+                "html",
+                "css",
+                "python",
+                "http",
+                "prisma",
+                "markdown",
+                "markdown_inline",
+                "svelte",
+                "graphql",
+                "bash",
+                "fish",
+                "lua",
+                "vim",
+                "dockerfile",
+                "gitignore",
+                "query",
+                "vimdoc",
+                "c",
+                "java",
+                "rust",
+                "ron",
             }
 
             treesitter.install(ensure_installed)
