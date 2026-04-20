@@ -8,12 +8,10 @@ return {
         "neovim/nvim-lspconfig",
     },
     config = function()
-        -- import mason and mason_lspconfig
         local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
         local mason_tool_installer = require("mason-tool-installer")
 
-        -- enable mason and configure icons
         mason.setup({
             ui = {
                 icons = {
@@ -21,28 +19,6 @@ return {
                     package_pending = "➜",
                     package_uninstalled = "✗",
                 },
-            },
-        })
-
-        mason_lspconfig.setup({
-            automatic_enable = false,
-            -- servers for mason to install
-            ensure_installed = {
-                "lua_ls",
-                "ts_ls",
-                "html",
-                "cssls",
-                "tailwindcss",
-                "gopls",
-                "angularls",
-                "astro",
-                "emmet_ls",
-                "emmet_language_server",
-                "marksman",
-                "clangd",
-                "jdtls",
-                "pyright",
-                "rust_analyzer",
             },
         })
 
@@ -79,32 +55,54 @@ return {
             vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
         end
 
-        mason_lspconfig.setup_handlers({
-            function(server_name)
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                })
-            end,
-            ["lua_ls"] = function()
-                lspconfig["lua_ls"].setup({
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
-                            workspace = {
-                                library = {
-                                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                    [vim.fn.stdpath("config") .. "/lua"] = true,
+        mason_lspconfig.setup({
+            automatic_enable = false,
+            ensure_installed = {
+                "lua_ls",
+                "ts_ls",
+                "html",
+                "cssls",
+                "tailwindcss",
+                "gopls",
+                "angularls",
+                "astro",
+                "emmet_ls",
+                "emmet_language_server",
+                "marksman",
+                "clangd",
+                "jdtls",
+                "pyright",
+                "rust_analyzer",
+            },
+            handlers = {
+                -- default handler for all servers
+                function(server_name)
+                    lspconfig[server_name].setup({
+                        capabilities = capabilities,
+                        on_attach = on_attach,
+                    })
+                end,
+                -- override for lua_ls
+                ["lua_ls"] = function()
+                    lspconfig["lua_ls"].setup({
+                        capabilities = capabilities,
+                        on_attach = on_attach,
+                        settings = {
+                            Lua = {
+                                diagnostics = {
+                                    globals = { "vim" },
+                                },
+                                workspace = {
+                                    library = {
+                                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                        [vim.fn.stdpath("config") .. "/lua"] = true,
+                                    },
                                 },
                             },
                         },
-                    },
-                })
-            end,
+                    })
+                end,
+            },
         })
     end,
 }
