@@ -31,4 +31,6 @@ set -gx OBS_USE_WAYLAND 1
 # VI Mode in Fish
 
 set -g fish_key_bindings fish_vi_key_bindings
-
+function repaint_on_mode_change --on-variable fish_bind_mode
+    commandline -f repaint 2>/dev/null
+end

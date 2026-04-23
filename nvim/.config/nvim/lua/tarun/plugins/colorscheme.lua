@@ -12,8 +12,30 @@ return {
       -- vim.cmd([[colorscheme mellow]])
     end,
   },
-  { "craftzdog/solarized-osaka.nvim", lazy = false },
-  { "rose-pine/neovim", name = "rose-pine", lazy = false },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = false,
+    opts = {
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+        functions = { italic = false },
+        variables = { italic = false },
+      },
+    },
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = false,
+    config = function()
+      require("rose-pine").setup({
+        styles = {
+          italic = false,
+        },
+      })
+    end,
+  },
   {
     "vague2k/vague.nvim",
     lazy = false,
@@ -44,6 +66,24 @@ return {
           variables = "none",
         },
       })
+    end,
+  },
+  {
+    "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("onedark").setup({
+        style = "warmer",
+        code_style = {
+          comments = "none",
+          keywords = "none",
+          functions = "none",
+          strings = "none",
+          variables = "none",
+        },
+      })
+      require("onedark").load()
     end,
   },
 }

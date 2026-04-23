@@ -42,13 +42,13 @@ truncation_length         = 4
 truncate_to_repo          = false
 fish_style_pwd_dir_length = 1
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music"     = " "
-"Pictures"  = " "
-"Developer" = "󰲋 "
-"~"         = "󱂵"
+# [directory.substitutions]
+# "Documents" = "󰈙 "
+# "Downloads" = "󰉍"
+# "Music"     = "󱍙"
+# "Pictures"  = "󰉏"
+# "dev" = "󰲋 "
+# "~"         = "󱂵"
 
 # ── Git remote icon ────────────────────────────────────────────────────────────
 [custom.giturl]
@@ -118,7 +118,7 @@ disabled = false
 disabled       = false
 success_symbol = "[➜](bold pine)"
 error_symbol   = "[➜](bold love)"
-vimcmd_symbol  = "[](bold gold)"
+vimcmd_symbol  = "[](bold rose)"
 
 # ── Python (right prompt) ──────────────────────────────────────────────────────
 [python]
