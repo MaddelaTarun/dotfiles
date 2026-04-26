@@ -280,6 +280,20 @@ return {
             },
         })
 
+        -- pyright
+        vim.lsp.config("pyright", {
+            filetypes = { "python" },
+            settings = {
+                python = {
+                    analysis = {
+                        autoSearchPaths = true,
+                        useLibraryCodeForTypes = true,
+                        diagnosticMode = "workspace",
+                    },
+                },
+            },
+        })
+
         -- Instead of using mason enable all configured LSP via `automatic_enable=true`
         -- Prefer more control by enable manual server call below via vim.lsp.enable("")
         -- mason config: lua/sethy/plugins/lsp/mason.lua:22
@@ -293,6 +307,7 @@ return {
             "astro",
             "tailwindcss",
             "marksman",
+            "pyright",
         })
     end,
 }

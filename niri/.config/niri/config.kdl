@@ -11,7 +11,7 @@ prefer-no-csd
 
 
 environment {
-    XCURSOR_THEME "Notwaita-White"
+    XCURSOR_THEME "Notwaita-Black"
     XCURSOR_SIZE "20"
     GTK_THEME "Vimix-Dark-compact-doder"
 }
@@ -82,7 +82,7 @@ input {
 }
 
 cursor {
-    xcursor-theme "Notwaita-White"
+    xcursor-theme "Notwaita-Black"
     xcursor-size 20
 }
 
@@ -151,7 +151,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 2
+        width 1
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -165,7 +165,7 @@ layout {
         //
         // The focus ring only draws around the active window, so the only place
         // where you can see its inactive-color is on other monitors.
-        inactive-color "#505050"
+        inactive-color "#2a2a2a"
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -187,14 +187,14 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        off
+        on
 
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
+        width 1
+        active-color "#ffffff"
+        inactive-color "#121212"
 
         // Color of the border around windows that request your attention.
-        urgent-color "#9b0000"
+        urgent-color "#ffffff"
 
         // Gradients can use a few different interpolation color spaces.
         // For example, this is a pastel rainbow gradient via in="oklch longer hue".
@@ -262,7 +262,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 // spawn-at-startup swaybg -i /home/t/Pictures/Wallpaper/wall.jpg -m fill
-spawn-at-startup "swaybg" "-i" "/home/t/Pictures/Wallpaper/rose-pine-dark.png" "-m" "fill"
+spawn-at-startup "swaybg" "-i" "/home/t/Pictures/Monochrome/anne-roston-_sVjqOIFhms-unsplash.jpg" "-m" "fill"
 spawn-at-startup "nm-applet" "--indicator"
 // Sync the environment variables with the system D-Bus
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "GNOME_SETUP_DISPLAY"

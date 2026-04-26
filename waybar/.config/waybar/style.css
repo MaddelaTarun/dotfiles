@@ -8,14 +8,14 @@
 }
 
 window#waybar {
-    background-color: #161617; 
+    background-color: #121212; 
     color: #ffffff;           
-    border-top: 1px solid #2A2A2D; 
+    border-top: 1px solid #1a1a1a; 
 }
 
 /* --- Left: Workspaces Pill --- */
 #workspaces {
-    background-color: #2A2A2D;
+    background-color: #1a1a1a;
     margin: 4px 10px;
     padding: 0 8px;
     border-radius: 12px;
@@ -34,12 +34,12 @@ window#waybar {
 
 #workspaces button:hover {
     background: transparent; /* Ensure no white box on hover */
-    color: #C1C0D4; 
+    color: #ffffff; 
 }
 
 /* --- Center: Clock Pill --- */
 #clock {
-    background-color: #2A2A2D;
+    background-color: #1a1a1a;
     margin: 4px 0;
     padding: 0 15px;
     border-radius: 12px;
@@ -49,14 +49,14 @@ window#waybar {
 
 /* --- Right: Resource Pill (Combined CPU/RAM) --- */
 #cpu {
-    background-color: #2A2A2D;
+    background-color: #1a1a1a;
     margin: 4px 0;
     padding: 0 5px 0 12px;
     border-radius: 12px 0 0 12px;
 }
 
 #memory {
-    background-color: #2A2A2D;
+    background-color: #1a1a1a;
     margin: 4px 0;
     padding: 0 12px 0 5px;
     border-radius: 0 12px 12px 0;
@@ -64,7 +64,7 @@ window#waybar {
 
 /* --- Right: Volume Pill --- */
 #pulseaudio {
-    background-color: #2A2A2D;
+    background-color: #1a1a1a;
     margin: 4px 10px;
     padding: 0 12px;
     border-radius: 12px;
@@ -72,7 +72,7 @@ window#waybar {
 
 /* --- Right: Tray Pill --- */
 #tray {
-    background-color: #2A2A2D;
+    background-color: #1a1a1a;
     margin: 4px 10px 4px 0;
     padding: 0 12px;
     border-radius: 12px;
@@ -83,7 +83,7 @@ window#waybar {
 }
 
 #custom-power {
-    background-color: #2A2A2D;
+    background-color: #1a1a1a;
     color: #ffffff;
     margin: 4px 10px 4px 0;
     padding: 0 12px;
