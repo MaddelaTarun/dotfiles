@@ -30,6 +30,9 @@ return {
                 "isort",
                 "pylint",
                 "denols",
+                "google-java-format",
+                "java-debug-adapter",
+                "java-test",
             },
         })
 
@@ -77,6 +80,9 @@ return {
             handlers = {
                 -- default handler for all servers
                 function(server_name)
+                    if server_name == "jdtls" then
+                        return
+                    end
                     lspconfig[server_name].setup({
                         capabilities = capabilities,
                         on_attach = on_attach,
