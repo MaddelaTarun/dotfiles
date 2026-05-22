@@ -204,4 +204,59 @@ return {
       })
     end,
   },
+  {
+    "WTFox/jellybeans.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("jellybeans").setup({
+        italics = false,
+      })
+    end,
+  },
+  {
+    "mikovskii/obscure.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("obscure").setup({
+        styles = {
+          comments = { italic = false },
+          keywords = { italic = false },
+          functions = { italic = false },
+          variables = { italic = false },
+          parameters = { italic = false },
+          strings = { italic = false },
+          types = { italic = false },
+          operators = { italic = false },
+        },
+      })
+    end,
+  },
+  {
+    "kvrohit/rasmus.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.rasmus_italic_comments = false
+      vim.g.rasmus_italic_keywords = false
+      vim.g.rasmus_italic_booleans = false
+      vim.g.rasmus_italic_functions = false
+      vim.g.rasmus_italic_variables = false
+      vim.g.rasmus_bold_keywords = true
+    end,
+  },
+  {
+    "water-sucks/darkrose.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("darkrose").setup({
+        styles = {
+          italic = false,
+          bold = true,
+        },
+      })
+    end,
+  },
 }

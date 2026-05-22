@@ -41,3 +41,57 @@ vim.opt.hlsearch = true
 vim.opt.mouse = "a"
 vim.g.editorconfig = true
 
+-- Global autocmd to disable italics in all colorschemes
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    local groups = {
+      "Comment",
+      "Keyword",
+      "Statement",
+      "Conditional",
+      "Repeat",
+      "Label",
+      "Exception",
+      "Operator",
+      "Type",
+      "StorageClass",
+      "Structure",
+      "Typedef",
+      "Identifier",
+      "Function",
+      "@keyword",
+      "@comment",
+      "@type",
+      "@function",
+      "@variable",
+      "@parameter",
+      "@property",
+      "@field",
+      "@method",
+      "@constant",
+      "@string",
+      "@namespace",
+      "@label",
+      "@operator",
+      "@include",
+      "@repeat",
+      "@conditional",
+      "@exception",
+      "@storageclass",
+      "@structure",
+      "@typedef",
+      "@punctuation.delimiter",
+      "@punctuation.bracket",
+      "@punctuation.special",
+    }
+    for _, group in ipairs(groups) do
+      local hl = vim.api.nvim_get_hl(0, { name = group })
+      if hl.italic then
+        hl.italic = false
+        vim.api.nvim_set_hl(0, group, hl)
+      end
+    end
+  end,
+})
+
