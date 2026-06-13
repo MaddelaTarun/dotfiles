@@ -76,7 +76,7 @@ case $1 in
 "reboot") systemctl reboot ;;
 "shutdown") systemctl poweroff ;;
 esac fi }
-power $(echo -e 'reboot\nshutdown\nlogout\nsuspend\nhibernate' | fzf --padding 1,2 --info-command 'printf " power menu ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --gutter " " --pointer " ▌" --color "bg+:-1,pointer:1,info:8,separator:8,scrollbar:0" --prompt '  ' | tail -1)
+power $(echo -e 'reboot\nshutdown\nlogout\nsuspend\nhibernate' | fzf --padding 1,2 --info-command 'printf " power menu ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --gutter " " --pointer " ▌" --color "bg+:-1,pointer:1,info:8,separator:8,scrollbar:0" --prompt '>  ' | tail -1)
 """
 
 [[modules]]

@@ -99,8 +99,8 @@ window-rule {
 window-rule {
     match title="otter"
     open-floating true
-    default-column-width { fixed 300; }
-    default-window-height { fixed 200; }
+    default-column-width { fixed 600; }
+    default-window-height { fixed 400; }
 }
 
 window-rule {
@@ -113,8 +113,8 @@ window-rule {
 window-rule {
     match title="powermenu"
     open-floating true
-    default-column-width { fixed 600; }
-    default-window-height { fixed 400; }
+    default-column-width { fixed 300; }
+    default-window-height { fixed 200; }
 }
 
 binds {
