@@ -86,6 +86,14 @@ cursor {
     xcursor-size 20
 }
 
+layer-rule {
+    match namespace="^awww-daemon$"
+    place-within-backdrop true
+}
+
+overview {
+backdrop-color "#0F0F0F"
+}
 
 
 // You can configure outputs by their name, which you can find
@@ -102,7 +110,7 @@ output "HDMI-A-1" {
 }
 
 layout {
-    gaps 6
+    gaps 0.5
 
     background-color "transparent"
     // When to center a column when changing focus, options are:
@@ -151,7 +159,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 1
+        width 0.5
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -159,7 +167,7 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
-        active-color "#ffffff"
+        active-color "#dbdbdb"
 
         // Color of the ring on inactive monitors.
         //
@@ -189,7 +197,7 @@ layout {
         // If you enable the border, you probably want to disable the focus ring.
         on
 
-        width 1
+        width 0
         active-color "#ffffff"
         inactive-color "#121212"
 
@@ -262,7 +270,10 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 // spawn-at-startup swaybg -i /home/t/Pictures/Wallpaper/wall.jpg -m fill
-spawn-at-startup "swaybg" "-i" "/home/t/Pictures/Monochrome/xp.jpg" "-m" "fill"
+// spawn-at-startup "swaybg" "-i" "/home/t/Pictures/Wallpaper/wallhaven-9or1lw.jpg" "-m" "fill"
+spawn-at-startup "awww-daemon"
+spawn-sh-at-startup "sleep 1 && awww img /home/t/Pictures/Wallpaper/wallhaven-9or1lw.jpg"
+
 spawn-at-startup "nm-applet" "--indicator"
 // Sync the environment variables with the system D-Bus
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "GNOME_SETUP_DISPLAY"
@@ -272,10 +283,12 @@ spawn-at-startup "wl-paste" "--watch" "clip-manager" "out"
 spawn-sh-at-startup "systemctl --user restart xdg-desktop-portal-wlr xdg-desktop-portal"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+    skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -350,9 +363,13 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
     Mod+Y { spawn "clip-manager" "sel"; }
-    Mod+E { spawn "/home/t/dotfiles/scripts-pkg/.local/bin/powermenu"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" {  spawn "fish" "-c" "tofi-drun --drun-launch=true || pkill tofi-drun";}
+    // Mod+E { spawn "/home/t/dotfiles/scripts-pkg/.local/bin/powermenu"; }
+    Mod+E hotkey-overlay-title="System Power Menu" { spawn "fish" "-c" r#"echo -e "󰐥 Shutdown\n󰜉 Reboot\n󰈆 Logout\n󰤄 Suspend" | rofi -dmenu -p "Power" | read -l selected; switch $selected; case '*Shutdown'; systemctl poweroff; case '*Reboot'; systemctl reboot; case '*Logout'; niri msg action quit; case '*Suspend'; systemctl suspend; end"#; }
+    // Mod+D hotkey-overlay-title="Run an Application: fuzzel" {  spawn "fish" "-c" "tofi-drun --drun-launch=true || pkill tofi-drun";}
+    Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun"; }
+    Mod+P hotkey-overlay-title="Clipboard History" { spawn "sh" "-c" "cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }

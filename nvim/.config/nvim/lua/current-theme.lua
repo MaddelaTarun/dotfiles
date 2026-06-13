@@ -1,1 +1,1 @@
-vim.cmd("colorscheme obscure")
+vim.cmd("colorscheme mellifluous")

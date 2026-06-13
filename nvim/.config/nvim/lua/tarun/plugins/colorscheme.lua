@@ -1,262 +1,127 @@
 -- Simple Comment. No use
 return {
-  {
-    "mellow-theme/mellow.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.g.mellow_italic_functions = false
-      vim.g.mellow_italic_comments = false
-      vim.g.mellow_italic_keywords = false
-      vim.g.mellow_italic_variables = false
-      -- vim.cmd([[colorscheme mellow]])
-    end,
-  },
-  {
-    "craftzdog/solarized-osaka.nvim",
-    lazy = false,
-    opts = {
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        functions = { italic = false },
-        variables = { italic = false },
-      },
+    {
+        "craftzdog/solarized-osaka.nvim",
+        lazy = false,
+        opts = {
+            styles = {
+                comments = { italic = false },
+                keywords = { italic = false },
+                functions = { italic = false },
+                variables = { italic = false },
+            },
+        },
     },
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    lazy = false,
-    config = function()
-      require("rose-pine").setup({
-        styles = {
-          italic = false,
-        },
-      })
-    end,
-  },
-  {
-    "vague2k/vague.nvim",
-    lazy = false,
-    config = function()
-      require("vague").setup({
-        style = {
-          boolean = "none",
-          number = "none",
-          float = "none",
-          error = "none",
-          comments = "none",
-          conditionals = "none",
-          functions = "none",
-          headings = "none",
-          identifiers = "none",
-          keywords = "none",
-          keyword_return = "none",
-          keywords_loop = "none",
-          keywords_label = "none",
-          keywords_exception = "none",
-          macros = "none",
-          operators = "none",
-          preproc = "none",
-          regex = "none",
-          strings = "none",
-          tag = "none",
-          type = "none",
-          variables = "none",
-        },
-      })
-    end,
-  },
-  {
-    "navarasu/onedark.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("onedark").setup({
-        style = "warmer",
-        code_style = {
-          comments = "none",
-          keywords = "none",
-          functions = "none",
-          strings = "none",
-          variables = "none",
-        },
-      })
-      vim.opt.background = "dark"
-      require("onedark").load()
-    end,
-  },
-  {
-    "nyoom-engineering/oxocarbon.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.opt.background = "dark"
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        pattern = "oxocarbon",
-        callback = function()
-          local groups = {
-            "Comment",
-            "Keyword",
-            "Statement",
-            "Conditional",
-            "Repeat",
-            "Label",
-            "Exception",
-            "Operator",
-            "Type",
-            "StorageClass",
-            "Structure",
-            "Typedef",
-            "Identifier",
-            "Function",
-            "@keyword",
-            "@comment",
-            "@type",
-            "@function",
-            "@variable",
-            "@parameter",
-            "@property",
-            "@field",
-            "@method",
-            "@constant",
-            "@string",
-            "@namespace",
-            "@label",
-            "@operator",
-            "@include",
-            "@repeat",
-            "@conditional",
-            "@exception",
-            "@storageclass",
-            "@structure",
-            "@typedef",
-            "@punctuation.delimiter",
-            "@punctuation.bracket",
-            "@punctuation.special",
-          }
-          for _, group in ipairs(groups) do
-            vim.api.nvim_set_hl(0, group, { italic = false })
-          end
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        lazy = false,
+        config = function()
+            require("rose-pine").setup({
+                styles = {
+                    italic = false,
+                },
+            })
         end,
-      })
-    end,
-  },
-  {
+    },
+    {
+        "vague2k/vague.nvim",
+        lazy = false,
+        config = function()
+            require("vague").setup({
+                style = {
+                    boolean = "none",
+                    number = "none",
+                    float = "none",
+                    error = "none",
+                    comments = "none",
+                    conditionals = "none",
+                    functions = "none",
+                    headings = "none",
+                    identifiers = "none",
+                    keywords = "none",
+                    keyword_return = "none",
+                    keywords_loop = "none",
+                    keywords_label = "none",
+                    keywords_exception = "none",
+                    macros = "none",
+                    operators = "none",
+                    preproc = "none",
+                    regex = "none",
+                    strings = "none",
+                    tag = "none",
+                    type = "none",
+                    variables = "none",
+                },
+            })
+        end,
+    },
+    {
+        "navarasu/onedark.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("onedark").setup({
+                style = "warmer",
+                code_style = {
+                    comments = "none",
+                    keywords = "none",
+                    functions = "none",
+                    strings = "none",
+                    variables = "none",
+                },
+            })
+            vim.opt.background = "dark"
+            require("onedark").load()
+        end,
+    },
+{
     "ramojus/mellifluous.nvim",
     lazy = false,
     priority = 1000,
     config = function()
       require("mellifluous").setup({
-        styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
-          functions = { italic = false },
-          strings = { italic = false },
-          variables = { italic = false },
-          constants = { italic = false },
-          numbers = { italic = false },
-          operators = { italic = false },
-          types = { italic = false },
-        },
-      })
-    end,
-  },
-  {
-    "aktersnurra/no-clown-fiesta.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("no-clown-fiesta").setup({
-        styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
-          functions = { italic = false },
-          type = { italic = false },
-          variables = { italic = false },
-          lsp = { italic = false },
-        },
-      })
-    end,
-  },
-  {
-    "edeneast/nightfox.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("nightfox").setup({
-        options = {
-          styles = {
-            comments = "NONE",
-            conditionals = "NONE",
-            constants = "NONE",
-            functions = "NONE",
-            keywords = "NONE",
-            numbers = "NONE",
-            operators = "NONE",
-            preprocs = "NONE",
-            strings = "NONE",
-            types = "NONE",
-            variables = "NONE",
+        colorset = "kanagawa_dragon",
+
+        kanagawa_dragon = {
+          color_overrides = {
+            dark = {
+              -- Mountain's near-black background, everything else stays kanagawa_dragon
+              bg = function(bg)
+                return require("mellifluous.color").new("#0F0F0F")
+              end,
+
+              -- Optionally tweak individual syntax colors here.
+              -- These are already kanagawa_dragon defaults — uncomment & change what you want.
+              -- colors = function(colors)
+              --   return {
+              --     -- fg           = "#DCD7BA", -- fujiWhite (identifiers)
+              --     -- main_keywords = "#E46876", -- waveRed (if/for/return)
+              --     -- other_keywords = "#957FB8", -- oniViolet (other keywords)
+              --     -- functions    = "#7E9CD8", -- crystalBlue
+              --     -- types        = "#7AA89F", -- waveAqua2
+              --     -- strings      = "#98BB6C", -- springGreen
+              --     -- constants    = "#FFA066", -- surimiOrange
+              --     -- comments     = "#727169", -- fujiGray
+              --     -- operators    = "#C0A36E", -- boatYellow2
+              --   }
+              -- end,
+            },
           },
         },
-      })
-    end,
-  },
-  {
-    "WTFox/jellybeans.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("jellybeans").setup({
-        italics = false,
-      })
-    end,
-  },
-  {
-    "mikovskii/obscure.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("obscure").setup({
-        styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
-          functions = { italic = false },
-          variables = { italic = false },
-          parameters = { italic = false },
-          strings = { italic = false },
-          types = { italic = false },
-          operators = { italic = false },
-        },
-      })
-    end,
-  },
-  {
-    "kvrohit/rasmus.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.g.rasmus_italic_comments = false
-      vim.g.rasmus_italic_keywords = false
-      vim.g.rasmus_italic_booleans = false
-      vim.g.rasmus_italic_functions = false
-      vim.g.rasmus_italic_variables = false
-      vim.g.rasmus_bold_keywords = true
-    end,
-  },
-  {
-    "water-sucks/darkrose.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("darkrose").setup({
-        styles = {
-          italic = false,
-          bold = true,
-        },
-      })
-    end,
-  },
+
+                styles = {
+                    comments  = { italic = false },
+                    keywords  = { italic = false },
+                    functions = { italic = false },
+                    strings   = { italic = false },
+                    variables = { italic = false },
+                    constants = { italic = false },
+                    numbers   = { italic = false },
+                    operators = { italic = false },
+                    types     = { italic = false },
+                },
+            })
+        end,
+    },
 }
