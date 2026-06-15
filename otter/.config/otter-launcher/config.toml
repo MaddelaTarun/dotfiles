@@ -1,5 +1,5 @@
 [general]
-default_module = "g"
+default_module = "a"
 empty_module = "a"
 exec_cmd = "sh -c"
 vi_mode = true

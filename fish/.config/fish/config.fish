@@ -190,3 +190,7 @@ set -gx STUDIO_JDK /usr/lib/jvm/java-21-openjdk  # Or your current JDK path
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx ANDROID_HOME /opt/android-sdk
 set -gx PATH $PATH $ANDROID_HOME/cmdline-tools/latest/bin $ANDROID_HOME/platform-tools $ANDROID_HOME/emulator
+fish_add_path $HOME/go/bin
+
+# Generated for envman. Do not edit.
+test -s ~/.config/envman/load.fish; and source ~/.config/envman/load.fish
