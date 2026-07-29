@@ -1,0 +1,17 @@
+include "environment.kdl"
+include "input.kdl"
+include "appearance.kdl"
+include "layout.kdl"
+include "autostart.kdl"
+include "keybinds.kdl"
+include "rules.kdl"
+
+include optional=true "outputs.kdl"
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+animations {}

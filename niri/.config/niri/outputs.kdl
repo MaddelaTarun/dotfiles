@@ -1,0 +1,5 @@
+output "HDMI-A-6" {
+    mode "1920x1080@100.000"
+    scale 1.0
+    transform "normal"
+}

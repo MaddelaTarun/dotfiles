@@ -1,0 +1,8 @@
+prefer-no-csd
+
+cursor {
+    xcursor-theme "Notwaita-Black"
+    xcursor-size 20
+}
+
+

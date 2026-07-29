@@ -1,0 +1,62 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "reload_style_on_change": true,
+    "height": 24,
+    "modules-left": [
+        "niri/workspaces",
+        "mpris"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "wireplumber",
+        "battery",
+        "tray"
+    ],
+
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "focused": "●",
+            "default": "○"
+        }
+    },
+
+    "clock": {
+        "format": "{:%b %d, %H:%M}",
+        "tooltip-format": "{:%A, %Y (%S)}",
+        "interval": 1
+    },
+
+    "mpris": {
+        "format": "󰎇 {dynamic}",
+        "dynamic-order": ["artist", "title"],
+        "artist-len": 30,
+        "title-len": 25,
+        "tooltip-format": "{status}",
+        "on-scroll-up": "playerctl volume 0.05+",
+        "on-scroll-down": "playerctl volume 0.05-"
+    },
+
+    "wireplumber": {
+        "format": "{icon} {volume}",
+        "format-muted": "󰝟 0",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "scroll-step": 5,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "interval": 30
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 12
+    }
+}
