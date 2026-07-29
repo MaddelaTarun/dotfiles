@@ -5,7 +5,7 @@
     "height": 24,
     "modules-left": [
         "niri/workspaces",
-        "mpris"
+        // "mpris"
     ],
     "modules-center": [
         "clock"
@@ -30,15 +30,15 @@
         "interval": 1
     },
 
-    "mpris": {
-        "format": "󰎇 {dynamic}",
-        "dynamic-order": ["artist", "title"],
-        "artist-len": 30,
-        "title-len": 25,
-        "tooltip-format": "{status}",
-        "on-scroll-up": "playerctl volume 0.05+",
-        "on-scroll-down": "playerctl volume 0.05-"
-    },
+    // "mpris": {
+    //     "format": "󰎇 {dynamic}",
+    //     "dynamic-order": ["artist", "title"],
+    //     "artist-len": 30,
+    //     "title-len": 25,
+    //     "tooltip-format": "{status}",
+    //     "on-scroll-up": "playerctl volume 0.05+",
+    //     "on-scroll-down": "playerctl volume 0.05-"
+    // },
 
     "wireplumber": {
         "format": "{icon} {volume}",
