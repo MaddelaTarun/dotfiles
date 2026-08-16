@@ -45,6 +45,7 @@
         "format-muted": "󰝟 0",
         "format-icons": ["󰕿", "󰖀", "󰕾"],
         "scroll-step": 5,
+        "tooltip": false,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
 

@@ -189,6 +189,8 @@ set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx ANDROID_HOME /opt/android-sdk
 set -gx PATH $PATH $ANDROID_HOME/cmdline-tools/latest/bin $ANDROID_HOME/platform-tools $ANDROID_HOME/emulator
 fish_add_path $HOME/go/bin
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 
 if test -s ~/.config/envman/load.fish
     source ~/.config/envman/load.fish
@@ -199,6 +201,7 @@ fish_add_path /nix/var/nix/profiles/default/bin
 
 # opencode
 fish_add_path /home/t/.opencode/bin
+fetchit
 
 fish_add_path /home/t/.spicetify
 set -x NIX_REMOTE daemon

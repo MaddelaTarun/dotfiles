@@ -14,4 +14,9 @@ hotkey-overlay {
     skip-at-startup
 }
 
+cursor {
+    xcursor-theme "Notwaita-Black"
+    xcursor-size 20
+}
+
 animations {}
