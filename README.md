@@ -24,10 +24,8 @@ cd ~/dotfiles
 - clones the Mono GTK and icon theme sources into `~/.config/` (use
   `--no-clone` to skip this).
 
-The Neovim repo is private, so a fresh machine needs GitHub authentication
-before the submodule can be fetched (`gh auth login`, or an SSH/HTTPS credential
-helper). If the submodule cannot be initialized, `install.sh` stops with the
-manual `git clone` command to run.
+The Neovim repo is public. If you prefer to fetch it in one step, clone with
+`--recurse-submodules`; otherwise `install.sh` initializes it for you.
 
 After installing, log out and back in (or restart niri) so autostart and session
 changes take effect. New fish shells pick up the fish config automatically, and
@@ -60,7 +58,7 @@ dotfiles repo.
 
 ## Neovim
 
-- Repo: <https://github.com/MaddelaTarun/nvim> (private)
+- Repo: <https://github.com/MaddelaTarun/nvim> (public)
 - Local path: `~/dotfiles/home/.config/nvim`, reachable through the
   `~/.config/nvim` symlink
 - Plugin manager: Neovim's built-in `vim.pack`; plugins install on first launch

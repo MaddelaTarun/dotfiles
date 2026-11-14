@@ -117,12 +117,12 @@ if [ ! -f "$NVIM_DIR/init.lua" ]; then
         # Normal case: this is a clone of the dotfiles repo with a submodule.
         if ! run git -C "$REPO_DIR" submodule update --init --recursive; then
             cat >&2 <<EOF
-error: could not initialize the Neovim submodule.
+error: could not initialize the Neovim submodule from
+       $NVIM_URL
 
-$NVIM_URL is a private repository. Authenticate first (gh auth login) or
-clone it manually:
+Check your network connection, then try again:
 
-    git clone $NVIM_URL "$NVIM_DIR"
+    git -C "$REPO_DIR" submodule update --init --recursive
 EOF
             exit 1
         fi
@@ -134,10 +134,10 @@ EOF
         exit 1
     elif ! run git clone "$NVIM_URL" "$NVIM_DIR"; then
         cat >&2 <<EOF
-error: could not clone $NVIM_URL.
+error: could not clone the Neovim config from
+       $NVIM_URL
 
-The repository is private. Authenticate first (gh auth login) or clone it
-manually:
+Check your network connection, then try again:
 
     git clone $NVIM_URL "$NVIM_DIR"
 EOF
