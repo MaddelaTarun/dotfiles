@@ -1,0 +1,79 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 28,
+    "spacing": 4,
+
+    "modules-left": [
+        "custom/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "pulseaudio",
+        "battery",
+        "custom/ethernet",
+        "tray"
+    ],
+
+    // Module Configurations
+
+    "custom/workspaces": {
+        "exec": "~/.config/waybar/niri-workspaces",
+        "return-type": "json",
+        "format": "{}"
+    },
+
+    "cpu": {
+        "format": "cpu {usage}%",
+        "interval": 2,
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "ram {percentage}%",
+        "interval": 2
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "{icon} muted",
+        "format-icons": {
+            "default": ["vol"]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "BAT {capacity}%",
+        "format-charging": "CHR {capacity}%",
+        "format-plugged": "AC {capacity}%"
+    },
+
+    "custom/ethernet": {
+        "exec": "~/.config/waybar/ethernet-status",
+        "return-type": "json",
+        "interval": 5,
+        "tooltip": true
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%a, %d %b}",
+        "format-alt-click": 1,
+        "tooltip-format": "{:%A, %B %d, %Y}"
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 10
+    }
+}

@@ -1,0 +1,8 @@
+[Default Applications]
+x-scheme-handler/discord=vesktop.desktop
+inode/directory=thunar.desktop
+image/jpeg=imv.desktop
+image/png=imv.desktop
+
+[Added Associations]
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop;

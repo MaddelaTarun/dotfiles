@@ -1,3 +1,15 @@
-clipse/.config/clipse/clipboard_history.json
-clipse/.config/clipse/clipse.log
-clipse/.config/clipse/tmp_files/
+# Created by install.sh (GTK4 links into the active theme)
+home/.config/gtk-4.0/assets
+home/.config/gtk-4.0/gtk.css
+home/.config/gtk-4.0/gtk-dark.css
+
+# Runtime file written by fish inside the linked config directory
+home/.config/fish/fish_variables
+
+# Editor / OS cruft
+.DS_Store
+*.swp
+*.swo
+
+# Installer backups live in $HOME, not in the repo
+.dotfiles-backup-*/

@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# Print the ethernet interface name for waybar.
+# class "online"  -> internet actually reachable through it (styled white)
+# class "offline" -> no internet (styled dim grey)
+
+set -u
+
+is_ethernet() {
+    case "$1" in
+        en* | eth*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+iface=""
+
+# Prefer the interface carrying the default route, if it is ethernet
+default_iface=$(ip route show default 2>/dev/null |
+    awk '{ for (i = 1; i <= NF; i++) if ($i == "dev") { print $(i + 1); exit } }')
+
+if [ -n "$default_iface" ] && is_ethernet "$default_iface"; then
+    iface=$default_iface
+fi
+
+# Collect every ethernet interface that exists, whether up or down, so the
+# module keeps showing the name (dimmed) when the cable is unplugged
+eths=()
+for name in $(ip -o link show 2>/dev/null | awk -F': ' '{ print $2 }' | cut -d@ -f1); do
+    is_ethernet "$name" && eths+=("$name")
+done
+
+# Otherwise fall back to an ethernet interface that is up, then to any of them
+if [ -z "$iface" ]; then
+    for name in "${eths[@]}"; do
+        if ip -o link show "$name" 2>/dev/null | grep -q 'LOWER_UP'; then
+            iface=$name
+            break
+        fi
+    done
+fi
+if [ -z "$iface" ] && [ ${#eths[@]} -gt 0 ]; then
+    iface=${eths[0]}
+fi
+
+# No ethernet hardware at all: hide the module
+if [ -z "$iface" ]; then
+    printf '{"text": ""}\n'
+    exit 0
+fi
+
+# Real connectivity check (not just link state)
+online=false
+if ping -c1 -W1 -I "$iface" 1.1.1.1 >/dev/null 2>&1; then
+    online=true
+elif timeout 2 bash -c 'exec 3<>/dev/tcp/1.1.1.1/443' 2>/dev/null; then
+    online=true
+fi
+
+if $online; then
+    printf '{"text": "%s", "class": "online", "tooltip": "Internet reachable via %s"}\n' "$iface" "$iface"
+else
+    printf '{"text": "%s", "class": "offline", "tooltip": "No internet via %s"}\n' "$iface" "$iface"
+fi

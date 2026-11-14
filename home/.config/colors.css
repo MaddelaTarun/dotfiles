@@ -1,0 +1,38 @@
+.hex {
+  --cl-black:    #101012;
+
+  --cl-gray-0:   #151517;
+  --cl-gray-1:   #1b1b1d;
+  --cl-gray-2:   #242427;
+  --cl-gray-3:   #353539;
+  --cl-gray-4:   #55555d;
+  --cl-gray-5:   #757581;
+  --cl-gray-6:   #9998a8;
+  --cl-gray-7:   #bdbbc9;
+  --cl-gray-8:   #cac8d2;
+  --cl-gray-9:   #d5d3da;
+  --cl-gray-10:  #e3e1e7;
+
+  --cl-white:    #f0eef3;
+
+  --cl-red-6:    #d18f85;
+  --cl-red-7:    #d99b91;
+
+  --cl-orange-6: #c99a79;
+  --cl-orange-7: #d7ad91;
+
+  --cl-yellow:   #cba98f;
+
+  --cl-green-6:  #83a994;
+  --cl-green-7:  #91b9a3;
+
+  --cl-cyan-6:   #83aeb2;
+  --cl-cyan-7:   #9bc0c2;
+
+  --cl-blue-6:   #a399c5;
+  --cl-blue-7:   #b0a6ce;
+  --cl-blue-8:   #beb6d8;
+
+  --cl-magenta-7: #cc91b6;
+  --cl-magenta-8: #d6a1c4;
+}

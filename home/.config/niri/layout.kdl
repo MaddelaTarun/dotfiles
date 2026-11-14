@@ -1,0 +1,23 @@
+layout {
+    gaps 0.5
+    background-color "transparent"
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 0.5
+        active-color "#dbdbdb"
+        inactive-color "#2a2a2a"
+    }
+}
+
+overview {
+    backdrop-color "#0F0F0F"
+}

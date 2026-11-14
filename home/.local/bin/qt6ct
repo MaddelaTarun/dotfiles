@@ -1,0 +1,4 @@
+#!/bin/sh
+# Qt settings tools must not inherit a stale QT_STYLE_OVERRIDE from an
+# already-running session; qt5ct/qt6ct refuse to work while it is set.
+exec env -u QT_STYLE_OVERRIDE QT_QPA_PLATFORMTHEME=qt5ct /usr/bin/qt6ct "$@"

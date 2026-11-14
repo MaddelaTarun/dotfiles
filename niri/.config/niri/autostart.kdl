@@ -1,7 +1,0 @@
-spawn-at-startup "waybar"
-spawn-at-startup "awww-daemon"
-spawn-sh-at-startup "sleep 1 && awww img /home/t/Pictures/abram-goglanian-eCAe9kIj3bY-unsplash.jpg"
-spawn-at-startup "nm-applet" "--indicator"
-spawn-at-startup "clipse" "-listen"
-spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
-spawn-sh-at-startup "systemctl --user restart xdg-desktop-portal-gnome xdg-desktop-portal"

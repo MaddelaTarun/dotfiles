@@ -1,0 +1,84 @@
+# ~/.config/zathura/zathurarc
+# Colors match ~/.config/colors.css
+
+# ---------------------------------------------------------------
+# Dark mode (recolor rendering)
+# ---------------------------------------------------------------
+set recolor true
+set recolor-lightcolor "#1b1b1d"      # page "paper" / light areas
+set recolor-darkcolor "#d5d3da"       # text / dark areas
+set recolor-keephue true              # preserve original hue
+set recolor-reverse-video true        # keep images/photos in original colors
+set recolor-adjust-lightness true     # better contrast on graphics
+
+# Toggle dark mode: Ctrl+r (zathura's built-in recolor toggle; left alone so
+# Ctrl+d / Ctrl+u keep their vim half-page scrolling)
+
+# ---------------------------------------------------------------
+# UI colors
+# ---------------------------------------------------------------
+set default-bg        "#101012"
+set default-fg        "#d5d3da"
+
+set statusbar-bg      "#151517"
+set statusbar-fg      "#9998a8"
+set statusbar-h-padding 8
+set statusbar-v-padding 2
+
+set inputbar-bg       "#1b1b1d"
+set inputbar-fg       "#d5d3da"
+
+set notification-bg          "#1b1b1d"
+set notification-fg          "#d5d3da"
+set notification-error-bg    "#1b1b1d"
+set notification-error-fg    "#d18f85"
+set notification-warning-bg  "#1b1b1d"
+set notification-warning-fg  "#cba98f"
+
+set completion-bg               "#1b1b1d"
+set completion-fg               "#d5d3da"
+set completion-group-bg         "#151517"
+set completion-group-fg         "#9998a8"
+set completion-highlight-bg     "#353539"
+set completion-highlight-fg     "#f0eef3"
+
+set highlight-color        "#b0a6ce"
+set highlight-active-color  "#cc91b6"
+set highlight-fg            "#101012"
+
+# ---------------------------------------------------------------
+# Behavior
+# ---------------------------------------------------------------
+set font "Lilex Nerd Font 11"
+set selection-clipboard clipboard
+set scroll-step 60
+set zoom-step 10
+set window-width 1000
+set window-height 800
+set guioptions "cs"
+
+# ---------------------------------------------------------------
+# Vim bindings
+# ---------------------------------------------------------------
+# Zathura is already vi-like out of the box; these all work with no config:
+#   h j k l            scroll left/down/up/right
+#   Ctrl+d / Ctrl+u    half page down / up
+#   Ctrl+f / Ctrl+b    full page down / up
+#   gg / G / nG        first / last / nth page
+#   H / L              top / bottom of page
+#   / ?                search forward / backward
+#   n / N              next / previous match
+#   Ctrl+o / Ctrl+i    jump back / forward
+#   mX / 'X            set / jump to quickmark X
+#   zI / zO / z0 / n=  zoom in / out / reset / to n%
+#   q, :q              quit
+# The extras below fill in the remaining muscle-memory keys.
+
+# vim line scrolling
+map <C-e> scroll down
+map <C-y> scroll up
+
+# vim-ish misc
+map <C-g> info
+map ZZ quit
+map ZQ quit

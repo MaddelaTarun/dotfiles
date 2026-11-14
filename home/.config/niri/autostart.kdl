@@ -1,0 +1,8 @@
+spawn-at-startup "waybar"
+spawn-at-startup "~/.config/scripts/nightlight.sh" "auto"
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+spawn-at-startup "awww-daemon"
+spawn-sh-at-startup "sleep 1 && awww img '/home/t/Pictures/Wallpapers/oil painting/the-cleveland-museum-of-art-Q_ayXo9bZvg-unsplash.jpg'"
+spawn-at-startup "nm-applet" "--indicator"
+spawn-sh-at-startup "systemctl --user restart xdg-desktop-portal-gtk xdg-desktop-portal"

@@ -1,0 +1,56 @@
+# Fedora packages used by this setup.
+# install.sh does not install these; install them manually, e.g.:
+#   sudo dnf install $(grep -v '^#' packages.txt | grep -v '^$')
+#
+# Desktop / compositor
+niri
+waybar
+swaylock
+wl-clipboard
+cliphist
+wlsunset
+playerctl
+
+# Terminal and CLI
+fish
+foot
+starship
+tmux
+btop
+fastfetch
+zoxide
+eza
+git
+gh
+
+# Launcher and notifications
+fuzzel
+mako
+
+# Editors / viewers
+neovim
+mpv
+zathura
+zathura-pdf-poppler
+
+# Desktop utilities
+pavucontrol
+lximage-qt
+xarchiver
+thunar
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+
+# Qt / GTK theming
+qt5ct
+qt6ct
+nwg-look
+kvantum
+papirus-icon-theme
+
+# Not available from the standard Fedora repos / installed manually:
+#   awww 0.12.1            (installed at /usr/local/bin/awww)
+#   Liga SFMono Nerd Font  (~/.local/share/fonts/LigaSFMono)
+#   Lilex Nerd Font        (~/.local/share/fonts/Lilex)
+#   Notwaita cursors       (~/.local/share/icons/Notwaita-Black, Notwaita-White)
+#   nm-applet              (NetworkManager tray applet)
