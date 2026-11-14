@@ -5,7 +5,7 @@
 # Existing files are moved to ~/.dotfiles-backup-<timestamp>/ first.
 #
 # Usage:
-#   ./install.sh              link configs and clone theme sources
+#   ./install.sh              initialize the nvim submodule, link configs, clone themes
 #   ./install.sh --dry-run    show what would happen
 #   ./install.sh --no-clone   skip cloning the Mono theme sources
 #   ./install.sh --help
@@ -102,6 +102,49 @@ link_children() {
     done
 }
 
+# --- Neovim submodule ------------------------------------------------------
+
+# Neovim lives in a separate repository (MaddelaTarun/nvim) and is vendored
+# here as a submodule. Initialize it before linking so ~/.config/nvim is never
+# an empty directory.
+NVIM_DIR="$SOURCE_DIR/.config/nvim"
+NVIM_URL="https://github.com/MaddelaTarun/nvim.git"
+
+if [ ! -f "$NVIM_DIR/init.lua" ]; then
+    echo "initializing Neovim config from $NVIM_URL"
+
+    if git -C "$REPO_DIR" rev-parse --git-dir >/dev/null 2>&1; then
+        # Normal case: this is a clone of the dotfiles repo with a submodule.
+        if ! run git -C "$REPO_DIR" submodule update --init --recursive; then
+            cat >&2 <<EOF
+error: could not initialize the Neovim submodule.
+
+$NVIM_URL is a private repository. Authenticate first (gh auth login) or
+clone it manually:
+
+    git clone $NVIM_URL "$NVIM_DIR"
+EOF
+            exit 1
+        fi
+    elif [ -d "$NVIM_DIR/.git" ]; then
+        echo "Neovim config already present: $NVIM_DIR"
+    elif [ -d "$NVIM_DIR" ] && [ -n "$(ls -A "$NVIM_DIR" 2>/dev/null)" ]; then
+        echo "error: $NVIM_DIR exists but does not look like the Neovim config." >&2
+        echo "       Move it aside, then run this installer again." >&2
+        exit 1
+    elif ! run git clone "$NVIM_URL" "$NVIM_DIR"; then
+        cat >&2 <<EOF
+error: could not clone $NVIM_URL.
+
+The repository is private. Authenticate first (gh auth login) or clone it
+manually:
+
+    git clone $NVIM_URL "$NVIM_DIR"
+EOF
+        exit 1
+    fi
+fi
+
 # --- Links -----------------------------------------------------------------
 
 # Top-level files. Directories that need per-entry links are handled below.
@@ -168,6 +211,7 @@ cat <<EOF
 Done.
 
 Backups:       $BACKUP_DIR
+Neovim:        $NVIM_DIR (MaddelaTarun/nvim)
 Theme sources: ~/.config/Mono-gtk-theme, ~/.config/Mono-icon-theme
 
 Log out and back in (or restart niri) so autostart and session changes apply.
