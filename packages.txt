@@ -27,26 +27,6 @@ gh
 fuzzel
 mako
 
-# Optional i3 (X11) session
-i3
-i3status
-i3lock
-dmenu
-dunst
-kitty
-xorg-x11-server-Xorg
-xorg-x11-xinit
-xorg-x11-xauth
-xorg-x11-drv-libinput
-xset
-xsetroot
-xrandr
-xrdb
-feh
-numlockx
-maim
-xclip
-
 # Editors / viewers
 neovim
 mpv

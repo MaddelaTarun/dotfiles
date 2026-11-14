@@ -46,9 +46,7 @@ home/
 ├── .zshrc
 ├── .gtkrc-2.0
 ├── .gitconfig
-├── .npmrc
-├── .xinitrc        # starts the optional i3/X11 session
-└── .Xresources
+└── .npmrc
 ```
 
 `~/.config` itself is never symlinked — only its children are — so unrelated
@@ -95,7 +93,6 @@ git commit -m "bump nvim config"
 ## What is managed
 
 - niri, waybar, fish, foot, fuzzel, mako, starship, tmux, zathura, btop
-- optional i3/X11 session (i3, i3status, i3bar, kitty, dunst)
 - Neovim (`vim.pack`, separate submodule), fastfetch
 - GTK 3/4, Qt5/Qt6, Kvantum, nwg-look, xsettingsd, Thunar/LXQt settings
 - fontconfig, mimeapps, user dirs, xdg-desktop-portal config
@@ -110,53 +107,6 @@ git commit -m "bump nvim config"
 - Generated state: `~/.config/uv`, `~/.config/nirimod`, `~/.local/share`
 - Theme build sources (`Mono-gtk-theme`, `Mono-icon-theme`) are cloned by the
   installer instead of committed.
-
-## i3 (X11) session
-
-An optional minimal i3 session is available alongside niri. niri remains the
-default; i3 is there for manual tiling, tabbed containers, and maximum
-compatibility with the proprietary NVIDIA driver.
-
-Config files:
-
-- `home/.config/i3/config`
-- `home/.config/i3status/config`
-- `home/.config/kitty/kitty.conf`
-- `home/.config/dunst/dunstrc`
-- `home/.config/scripts/powermenu-x11.sh`
-- `home/.xinitrc` and `home/.Xresources`
-
-Install the X11 side (the i3 packages alone do not include an X server):
-
-```sh
-sudo dnf install xorg-x11-server-Xorg xorg-x11-xinit xorg-x11-xauth \
-  xorg-x11-drv-libinput xset xsetroot xrandr xrdb feh numlockx maim xclip
-```
-
-Start it from a TTY:
-
-```sh
-# leave niri first (or switch to a TTY with Ctrl+Alt+F3)
-startx
-```
-
-Exit i3 with `$mod+Shift+E` and choose “Yes, exit”. Start niri again with
-`niri-session`.
-
-Useful keybinds (`$mod` = Super):
-
-- `$mod+Return` kitty, `$mod+D` dmenu, `$mod+Escape` power menu
-- `$mod+W` tabbed, `$mod+S` stacked, `$mod+E` split
-- `$mod+H/J/K/L` or arrows to focus; add `Shift` to move
-- `$mod+1..9` workspaces, `$mod+0` workspace 10
-- `$mod+R` resize mode, `$mod+F` fullscreen, `$mod+V` floating
-- `$mod+Shift+E` exit, `$mod+Shift+R` restart, `$mod+Shift+C` reload
-- `Print` screenshot to clipboard, `$mod+Print` screenshot to
-  `~/Pictures/Screenshots`
-
-X11 tool mapping: waybar → i3bar/i3status, fuzzel → dmenu, foot → kitty,
-mako → dunst, swaylock → i3lock, awww → feh. The Wayland-only clipboard and
-night-light helpers are not used in this session.
 
 ## Updating
 
