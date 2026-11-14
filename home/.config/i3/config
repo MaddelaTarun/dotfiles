@@ -1,0 +1,174 @@
+# Minimal i3 configuration (X11).
+# Mod = Super. Managed from ~/dotfiles/home/.config/i3/config.
+
+set $mod Mod4
+set $term kitty
+set $menu dmenu_run
+
+font pango:Liga SFMono Nerd Font Medium 10
+
+# --- appearance ------------------------------------------------------------
+
+default_border pixel 1
+default_floating_border normal
+hide_edge_borders smart
+gaps inner 0
+gaps outer 0
+
+client.focused          #a399c5 #101012 #c9c7cd #a399c5 #a399c5
+client.focused_inactive #242427 #101012 #757581 #242427 #242427
+client.unfocused        #101012 #101012 #757581 #101012 #101012
+client.urgent           #d18f85 #101012 #101012 #d18f85 #d18f85
+client.background       #101012
+
+# --- behaviour -------------------------------------------------------------
+
+focus_follows_mouse yes
+mouse_warping output
+popup_during_fullscreen smart
+workspace_auto_back_and_forth yes
+default_orientation horizontal
+title_align left
+
+# --- autostart -------------------------------------------------------------
+
+exec --no-startup-id dunst
+exec --no-startup-id feh --bg-fill '/home/t/Pictures/Wallpapers/oil painting/the-cleveland-museum-of-art-Q_ayXo9bZvg-unsplash.jpg'
+exec --no-startup-id numlockx on
+exec --no-startup-id xset r rate 200 35
+
+# --- launcher and session --------------------------------------------------
+
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+d exec --no-startup-id $menu
+bindsym $mod+Escape exec --no-startup-id ~/.config/scripts/powermenu-x11.sh
+bindsym $mod+Shift+b exec --no-startup-id helium
+bindsym $mod+Shift+y exec --no-startup-id thunar
+bindsym $mod+Mod1+l exec --no-startup-id i3lock -c 101012
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec --no-startup-id i3-nagbar -t warning -m 'Exit i3?' -B 'Yes, exit' 'i3-msg exit'
+
+# --- windows ---------------------------------------------------------------
+
+bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+v floating toggle
+bindsym $mod+Shift+v focus mode_toggle
+bindsym $mod+a focus parent
+
+# --- layout ----------------------------------------------------------------
+
+bindsym $mod+e split toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+r mode "resize"
+
+# --- focus -----------------------------------------------------------------
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# --- move ------------------------------------------------------------------
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# --- workspaces ------------------------------------------------------------
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+Page_Down workspace next
+bindsym $mod+Page_Up workspace prev
+bindsym $mod+u workspace next
+bindsym $mod+i workspace prev
+bindsym $mod+Control+Page_Down move container to workspace next
+bindsym $mod+Control+Page_Up move container to workspace prev
+bindsym $mod+Control+u move container to workspace next
+bindsym $mod+Control+i move container to workspace prev
+
+# --- media keys ------------------------------------------------------------
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+
+# --- screenshots -----------------------------------------------------------
+
+bindsym Print exec --no-startup-id sh -c 'maim -s | xclip -selection clipboard -t image/png'
+bindsym $mod+Print exec --no-startup-id sh -c 'mkdir -p ~/Pictures/Screenshots && maim -s ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png'
+
+# --- resize mode -----------------------------------------------------------
+
+mode "resize" {
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# --- bar -------------------------------------------------------------------
+
+bar {
+    status_command i3status
+    position top
+    tray_output none
+    font pango:Liga SFMono Nerd Font Medium 10
+
+    colors {
+        background #101012
+        statusline #bdbbc9
+        separator #353539
+        focused_workspace  #a399c5 #101012 #101012
+        active_workspace   #242427 #101012 #bdbbc9
+        inactive_workspace #101012 #101012 #757581
+        urgent_workspace   #d18f85 #101012 #101012
+        binding_mode       #cba98f #101012 #101012
+    }
+}

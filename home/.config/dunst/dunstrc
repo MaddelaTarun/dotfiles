@@ -1,0 +1,30 @@
+[global]
+    font = Liga SFMono Nerd Font 10
+    width = 320
+    height = (120, 120)
+    origin = top-right
+    offset = 10x10
+    frame_width = 1
+    frame_color = "#353539"
+    separator_color = frame
+    background = "#101012"
+    foreground = "#c9c7cd"
+    timeout = 5
+    corner_radius = 0
+    transparency = 0
+
+[urgency_low]
+    background = "#101012"
+    foreground = "#757581"
+    timeout = 3
+
+[urgency_normal]
+    background = "#101012"
+    foreground = "#c9c7cd"
+    timeout = 5
+
+[urgency_critical]
+    background = "#101012"
+    foreground = "#d18f85"
+    frame_color = "#d18f85"
+    timeout = 0
