@@ -2,8 +2,21 @@
 # install.sh does not install these; install them manually, e.g.:
 #   sudo dnf install $(grep -v '^#' packages.txt | grep -v '^$')
 #
-# Desktop / compositor
+# Compositors / window managers
 niri
+i3
+i3status
+i3lock
+xss-lock
+dex-autostart
+numlockx
+xinit
+xorg-x11-server-Xorg
+xorg-x11-server-utils
+xrandr
+feh
+
+# Wayland utilities
 waybar
 swaylock
 wl-clipboard
@@ -13,6 +26,7 @@ playerctl
 
 # Terminal and CLI
 fish
+kitty
 foot
 starship
 tmux
@@ -23,9 +37,15 @@ eza
 git
 gh
 
-# Launcher and notifications
+# Launcher, notifications and clipboard
 fuzzel
 mako
+rofi
+xclip
+
+# Audio
+pavucontrol
+pulseaudio-utils
 
 # Editors / viewers
 neovim
@@ -34,10 +54,10 @@ zathura
 zathura-pdf-poppler
 
 # Desktop utilities
-pavucontrol
 lximage-qt
 xarchiver
 thunar
+network-manager-applet
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 
@@ -53,4 +73,3 @@ papirus-icon-theme
 #   Liga SFMono Nerd Font  (~/.local/share/fonts/LigaSFMono)
 #   Lilex Nerd Font        (~/.local/share/fonts/Lilex)
 #   Notwaita cursors       (~/.local/share/icons/Notwaita-Black, Notwaita-White)
-#   nm-applet              (NetworkManager tray applet)

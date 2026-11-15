@@ -12,12 +12,12 @@ if type -q eza
     alias ll "eza -la -g --icons"
 end
 
-# vim keybinding, always block cursor
-set -g fish_cursor_default block
-set -g fish_cursor_insert block
-set -g fish_cursor_replace block
-set -g fish_cursor_replace_one block
-set -g fish_cursor_visual block
+# vim keybinding, single-line (bar) cursor in every mode
+set -g fish_cursor_default line
+set -g fish_cursor_insert line
+set -g fish_cursor_replace line
+set -g fish_cursor_replace_one line
+set -g fish_cursor_visual line
 set -g fish_key_bindings fish_vi_key_bindings
 
 # Hide the vi mode indicator
@@ -173,12 +173,30 @@ alias gpull='git pull'
 alias shutdown='systemctl poweroff'
 
 ## Environment
-set -gx QT_QPA_PLATFORM wayland
+# This shell can start either session, so pick the backend from the display
+# that is actually in use. Chromium/Electron (Helium, Vesktop) and Qt apps read
+# these variables: a stale "wayland" value in an X11/i3 session makes them try
+# to connect to a socket that does not exist and exit immediately, while an
+# X11 value under niri forces them through XWayland.
+if test -n "$WAYLAND_DISPLAY"
+    set -gx XDG_SESSION_TYPE wayland
+    set -gx XDG_CURRENT_DESKTOP niri
+    set -gx QT_QPA_PLATFORM wayland
+else
+    set -gx XDG_SESSION_TYPE x11
+    set -gx XDG_CURRENT_DESKTOP i3
+    set -gx QT_QPA_PLATFORM xcb
+    # Drop Wayland-only hints inherited from an older session.
+    set -e WAYLAND_DISPLAY
+    set -e MOZ_ENABLE_WAYLAND
+    set -e ELECTRON_OZONE_PLATFORM_HINT
+    set -e GDK_BACKEND
+    set -e SDL_VIDEODRIVER
+end
+
 # qt5ct/qt6ct must be the platform theme, and QT_STYLE_OVERRIDE must not be set
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -e QT_STYLE_OVERRIDE
-set -gx XDG_CURRENT_DESKTOP niri
-set -gx XDG_SESSION_TYPE wayland
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 

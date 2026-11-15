@@ -1,0 +1,71 @@
+/* fuzzel-style centered popup, matching ~/.config/fuzzel/fuzzel.ini */
+
+* {
+    background-color:  #06050c;
+    text-color:        #ffffff;
+    border:            0;
+    border-radius:     0;
+    margin:            0;
+    padding:           0;
+    spacing:           0;
+}
+
+window {
+    location:          center;
+    anchor:            center;
+    width:             45ch;
+    padding:           6px 12px;
+    children:          [ mainbox ];
+}
+
+mainbox {
+    orientation:       vertical;
+    padding:           0;
+    spacing:           4px;
+    children:          [ inputbar, listview ];
+}
+
+inputbar {
+    expand:            false;
+    padding:           0;
+    spacing:           0;
+    children:          [ prompt, entry ];
+}
+
+prompt {
+    padding:           0;
+    vertical-align:    0.5;
+}
+
+entry {
+    padding:           0;
+    vertical-align:    0.5;
+    placeholder:       "";
+}
+
+listview {
+    layout:            vertical;
+    lines:             10;
+    columns:           1;
+    fixed-height:      true;
+    dynamic:           false;
+    scrollbar:         false;
+    spacing:           0;
+    padding:           0;
+}
+
+element {
+    padding:           0;
+    spacing:           0;
+}
+
+element selected {
+    background-color:  #383838;
+    text-color:        #ffffff;
+}
+
+element-text {
+    background-color:  inherit;
+    text-color:        inherit;
+    vertical-align:    0.5;
+}

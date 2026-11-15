@@ -1,0 +1,16 @@
+configuration {
+    font:              "Liga SFMono Nerd Font Medium 12";
+    modi:              "drun,run";
+    show-icons:        false;
+    display-drun:      "> ";
+    display-run:       "> ";
+    drun-display-format: "{name}";
+    fixed-num-lines:   false;
+    disable-history:   true;
+    matching:          "fuzzy";
+    sorting-method:    "fzf";
+    case-smart:        true;
+    cycle:             true;
+}
+
+@theme "~/.config/rofi/theme.rasi"

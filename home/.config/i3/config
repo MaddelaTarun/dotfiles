@@ -1,0 +1,28 @@
+# i3 configuration
+#
+# Settings are split by feature in config.d/. Edit the file for the area you
+# care about and reload with $mod+Shift+c.
+#
+#   10-variables          shared variables ($mod, ...)
+#   20-appearance         font, gaps, borders, colors, default layout
+#   30-startup            programs/commands started with i3
+#   40-applications       terminal, launcher, menus
+#   50-window-management  focus, move, split, layout, floating
+#   60-workspaces         names, app → workspace rules, switching/moving
+#   70-resize             resize mode + direct resize keys
+#   80-media-keys         volume/mute keys
+#   90-session            reload, restart, exit
+#   99-bar                i3bar + i3status
+#
+# Relative include paths are resolved from this file's directory (~/.config/i3).
+
+include config.d/10-variables.conf
+include config.d/20-appearance.conf
+include config.d/30-startup.conf
+include config.d/40-applications.conf
+include config.d/50-window-management.conf
+include config.d/60-workspaces.conf
+include config.d/70-resize.conf
+include config.d/80-media-keys.conf
+include config.d/90-session.conf
+include config.d/99-bar.conf

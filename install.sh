@@ -214,6 +214,7 @@ Backups:       $BACKUP_DIR
 Neovim:        $NVIM_DIR (MaddelaTarun/nvim)
 Theme sources: ~/.config/Mono-gtk-theme, ~/.config/Mono-icon-theme
 
-Log out and back in (or restart niri) so autostart and session changes apply.
-New shells pick up the fish config automatically.
+Log out and back in (or restart niri / restart i3 with \$mod+Shift+r) so
+autostart and session changes apply. New shells pick up the fish config
+automatically.
 EOF

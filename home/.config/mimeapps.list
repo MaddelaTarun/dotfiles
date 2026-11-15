@@ -5,4 +5,4 @@ image/jpeg=imv.desktop
 image/png=imv.desktop
 
 [Added Associations]
-application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+application/pdf=helium.desktop;org.pwmt.zathura-pdf-poppler.desktop;librewolf.desktop;

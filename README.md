@@ -1,9 +1,15 @@
 # dotfiles
 
-Personal Fedora 44 + [niri](https://github.com/YaLTeR/niri) desktop configuration.
+Personal Fedora 44 desktop configuration for two sessions that live side by
+side:
+
+- [niri](https://github.com/YaLTeR/niri) — Wayland compositor
+- [i3](https://i3wm.org/) — X11 window manager
+
 The repo mirrors the important parts of `$HOME` under [`home/`](home/) and an
 installer symlinks them into place, so editing a config in place also edits the
-repo.
+repo. Both sessions' configs are always installed; pick the one you want at
+login (or with `startx`).
 
 ## Bootstrap
 
@@ -27,15 +33,18 @@ cd ~/dotfiles
 The Neovim repo is public. If you prefer to fetch it in one step, clone with
 `--recurse-submodules`; otherwise `install.sh` initializes it for you.
 
-After installing, log out and back in (or restart niri) so autostart and session
-changes take effect. New fish shells pick up the fish config automatically, and
-Neovim installs its `vim.pack` plugins on first launch.
+After installing, log out and back in (or restart niri, or restart i3 with
+`$mod+Shift+r`) so autostart and session changes take effect. New fish shells
+pick up the fish config automatically, and Neovim installs its `vim.pack`
+plugins on first launch.
 
 ## Layout
 
 ```text
 home/
 ├── .config/          # app configs, linked individually into ~/.config
+│   ├── i3/           # i3 config + config.d/ feature files
+│   ├── niri/         # niri (Wayland) config
 │   └── nvim/         # git submodule -> MaddelaTarun/nvim
 ├── .local/bin/       # helper scripts
 ├── .themes/          # MonoThemeDark GTK theme
@@ -55,6 +64,49 @@ application state stays untouched.
 `home/.config/nvim` is a submodule, so the Neovim config is a separate repo
 with its own history. Everything else in `home/` is tracked directly by the
 dotfiles repo.
+
+## niri (Wayland)
+
+`home/.config/niri/` is split into `appearance.kdl`, `autostart.kdl`,
+`config.kdl`, `environment.kdl`, `input.kdl`, `keybinds.kdl`, `layout.kdl`,
+`outputs.kdl`, and `rules.kdl`. Autostart launches waybar, the night-light
+script, cliphist watchers, awww (wallpaper), and `nm-applet`.
+
+## i3 (X11)
+
+The i3 config is split by feature so each area is easy to find:
+
+```text
+home/.config/i3/
+├── config
+└── config.d/
+    ├── 10-variables.conf          $mod
+    ├── 20-appearance.conf         font, gaps, borders, colors, layout
+    ├── 30-startup.conf            xrandr, autostart, locker, wallpaper, key repeat
+    ├── 40-applications.conf       terminal, launcher, power menu, emoji picker
+    ├── 50-window-management.conf  focus/move/split/fullscreen/layout/floating
+    ├── 60-workspaces.conf         workspace names, app → workspace rules, ws keys
+    ├── 70-resize.conf             resize mode + direct resize keys
+    ├── 80-media-keys.conf         volume/mute keys
+    ├── 90-session.conf            reload/restart/exit
+    └── 99-bar.conf                i3bar + i3status
+```
+
+Edit the relevant file and reload with `$mod+Shift+c` (restart with
+`$mod+Shift+r`). Relative `include` paths are resolved from `~/.config/i3/`.
+
+Apps are pinned to workspaces, no matter which workspace you launch them from:
+
+| Workspace | Apps |
+| --------- | ---- |
+| 1 | Helium |
+| 2 | kitty |
+| 3 | Spotify, Vesktop, Obsidian |
+| 4 | OBS Studio |
+
+The i3 launcher binding strips any stale Wayland environment before starting
+rofi, so Chromium/Electron and Qt apps use X11 even if the shell came from a
+Wayland session.
 
 ## Neovim
 
@@ -92,7 +144,8 @@ git commit -m "bump nvim config"
 
 ## What is managed
 
-- niri, waybar, fish, foot, fuzzel, mako, starship, tmux, zathura, btop
+- niri, waybar, i3, i3status, rofi, kitty, foot, fuzzel, mako
+- fish, starship, tmux, zathura, btop
 - Neovim (`vim.pack`, separate submodule), fastfetch
 - GTK 3/4, Qt5/Qt6, Kvantum, nwg-look, xsettingsd, Thunar/LXQt settings
 - fontconfig, mimeapps, user dirs, xdg-desktop-portal config
@@ -135,8 +188,13 @@ git submodule update --init --recursive
   display.
 - `home/.config/niri/autostart.kdl` points at a wallpaper under
   `~/Pictures/Wallpapers/...`; change the path or add your own image.
+- `home/.config/i3/config.d/30-startup.conf` sets the display mode for
+  `HDMI-0` and points at another wallpaper under `~/Pictures/Wallpapers/...`;
+  adjust both for your hardware.
 - `home/.config/waybar/niri-workspaces` is a prebuilt x86_64 Rust binary. On a
   different architecture or distro, replace it with a matching build.
+- `home/.config/kitty/kitty.conf` uses absolute paths under
+  `~/.local/share/fonts/LigaSFMono`, so the font must be installed there.
 - `home/.gtkrc-2.0` was exported by nwg-look. Running nwg-look again will
   rewrite it through the symlink.
 
