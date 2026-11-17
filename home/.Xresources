@@ -1,0 +1,5 @@
+! Cursor theme/size for X11 clients that read X resources (libXcursor, Qt,
+! Chromium/Electron). GTK apps use the gsettings/GTK settings.ini values,
+! which are the same theme and size.
+Xcursor.theme: Notwaita-White
+Xcursor.size: 20

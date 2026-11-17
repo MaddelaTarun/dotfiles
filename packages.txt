@@ -1,33 +1,31 @@
-# Fedora packages used by this setup.
-# install.sh does not install these; install them manually, e.g.:
-#   sudo dnf install $(grep -v '^#' packages.txt | grep -v '^$')
+# Packages for this setup.
 #
-# Compositors / window managers
-niri
+# On NixOS everything below is declared in nixos/configuration.nix and applied
+# with:
+#
+#   sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixos
+#
+# install.sh does not install packages. On a non-NixOS machine, install the
+# equivalents from your distribution; the nixpkgs attribute name is given where
+# it differs from the command name.
+
+# --- i3 / X11 session ------------------------------------------------------
 i3
 i3status
 i3lock
 xss-lock
-dex-autostart
+dex                     # replaces Fedora's dex-autostart
 numlockx
 xinit
-xorg-x11-server-Xorg
-xorg-x11-server-utils
 xrandr
+xrdb
+xset
 feh
+picom
 
-# Wayland utilities
-waybar
-swaylock
-wl-clipboard
-cliphist
-wlsunset
-playerctl
-
-# Terminal and CLI
+# --- Terminal and CLI ------------------------------------------------------
 fish
 kitty
-foot
 starship
 tmux
 btop
@@ -36,40 +34,68 @@ zoxide
 eza
 git
 gh
+neovim
 
-# Launcher, notifications and clipboard
-fuzzel
-mako
+# --- Launcher, clipboard, notifications ------------------------------------
 rofi
 xclip
+haskellPackages.greenclip   # the `greenclip` binary, packaged on NixOS
+libnotify                   # notify-send
 
-# Audio
+# --- Screenshots -----------------------------------------------------------
+flameshot
+
+# --- Audio -----------------------------------------------------------------
 pavucontrol
-pulseaudio-utils
+wireplumber                 # PipeWire session/policy manager
+playerctl
 
-# Editors / viewers
-neovim
+# --- Viewers / editors -----------------------------------------------------
 mpv
-zathura
-zathura-pdf-poppler
+zathura                     # nixpkgs attribute includes the PDF plugins
 
-# Desktop utilities
+# --- Desktop utilities -----------------------------------------------------
 lximage-qt
 xarchiver
 thunar
-network-manager-applet
-xdg-desktop-portal
-xdg-desktop-portal-gtk
+networkmanagerapplet        # nm-applet
 
-# Qt / GTK theming
+# --- Qt / GTK theming ------------------------------------------------------
 qt5ct
 qt6ct
 nwg-look
 kvantum
 papirus-icon-theme
 
-# Not available from the standard Fedora repos / installed manually:
-#   awww 0.12.1            (installed at /usr/local/bin/awww)
-#   Liga SFMono Nerd Font  (~/.local/share/fonts/LigaSFMono)
-#   Lilex Nerd Font        (~/.local/share/fonts/Lilex)
-#   Notwaita cursors       (~/.local/share/icons/Notwaita-Black, Notwaita-White)
+# --- Applications ----------------------------------------------------------
+vesktop
+obs-studio
+helium                      # from the github:tomsch/helium-nix flake
+notwaita-cursor             # local derivation, nixos/packages/notwaita-cursor.nix
+
+# --- Flatpak ---------------------------------------------------------------
+flatpak
+
+# --- Archive helpers used by the fish `extract` function -------------------
+unzip
+p7zip
+unrar
+file
+curl
+wget
+
+# --- Not from nixpkgs ------------------------------------------------------
+# Liga SFMono Nerd Font
+#   nixos/packages/sf-mono-liga.nix, source from the
+#   github:shaunsingh/SFMono-Nerd-Font-Ligaturized flake input.
+# Notwaita cursors (Black and White)
+#   nixos/packages/notwaita-cursor.nix, prebuilt release tarballs.
+# Unicode emoji data
+#   nixpkgs `unicode-emoji`; home.nix links share/unicode/emoji to
+#   ~/.local/share/unicode/emoji for scripts/emoji.sh.
+
+# --- Flatpak apps (per user, not declarative on NixOS 26.05) ---------------
+# flatpak remote-add --if-not-exists --user flathub \
+#   https://flathub.org/repo/flathub.flatpakrepo
+# flatpak install --user flathub \
+#   com.spotify.Client md.obsidian.Obsidian org.videolan.VLC

@@ -160,24 +160,40 @@ done
 # Never link ~/.config itself; only its children.
 link_children "$SOURCE_DIR/.config" "$HOME/.config"
 
+# home-manager writes ~/.config/environment.d/10-home-manager.conf, so this
+# directory must stay a real directory instead of a symlink into the repo.
+# Link its files individually.
+ENVD_SRC="$SOURCE_DIR/.config/environment.d"
+ENVD_DEST="$HOME/.config/environment.d"
+if [ -d "$ENVD_SRC" ]; then
+    if [ -L "$ENVD_DEST" ]; then
+        run rm -- "$ENVD_DEST"
+    fi
+    run mkdir -p "$ENVD_DEST"
+    link_children "$ENVD_SRC" "$ENVD_DEST"
+fi
+
 # Link individual helper scripts so the rest of ~/.local/bin is untouched.
 link_children "$SOURCE_DIR/.local/bin" "$HOME/.local/bin"
 
 # Link individual themes so other themes in ~/.themes are untouched.
 link_children "$SOURCE_DIR/.themes" "$HOME/.themes"
 
-# GTK4 expects its CSS/assets to live directly in ~/.config/gtk-4.0.
-# Recreate those links with absolute paths so the repo is portable.
-GTK4_THEME="$HOME/.themes/MonoThemeDark/gtk-4.0"
-GTK4_DEST="$HOME/.config/gtk-4.0"
+# GTK4 expects its CSS/assets to live directly in ~/.config/gtk-4.0. Link them
+# to the Mono theme with relative links that are committed to the repo, so the
+# checkout is portable and survives a fresh clone (no absolute $HOME paths, no
+# dependency on install.sh having run before).
+GTK4_SRC="$SOURCE_DIR/.config/gtk-4.0"
+GTK4_THEME="$SOURCE_DIR/.themes/MonoThemeDark/gtk-4.0"
+GTK4_REL="../../.themes/MonoThemeDark/gtk-4.0"
 if [ -d "$GTK4_THEME" ]; then
-    run mkdir -p "$GTK4_DEST"
+    run mkdir -p "$GTK4_SRC"
     for f in assets gtk.css gtk-dark.css; do
         [ -e "$GTK4_THEME/$f" ] || continue
         if [ "$DRY_RUN" -eq 1 ]; then
-            echo "would link $GTK4_DEST/$f -> $GTK4_THEME/$f"
+            echo "would link $GTK4_SRC/$f -> $GTK4_REL/$f"
         else
-            ln -sfn "$GTK4_THEME/$f" "$GTK4_DEST/$f"
+            ln -sfn "$GTK4_REL/$f" "$GTK4_SRC/$f"
         fi
     done
 fi
@@ -214,7 +230,7 @@ Backups:       $BACKUP_DIR
 Neovim:        $NVIM_DIR (MaddelaTarun/nvim)
 Theme sources: ~/.config/Mono-gtk-theme, ~/.config/Mono-icon-theme
 
-Log out and back in (or restart niri / restart i3 with \$mod+Shift+r) so
+Log out and back in (or restart i3 with \$mod+Shift+r) so
 autostart and session changes apply. New shells pick up the fish config
 automatically.
 EOF

@@ -1,4 +1,4 @@
-/* fuzzel-style centered popup, matching ~/.config/fuzzel/fuzzel.ini */
+/* Centered popup matching the i3 bar styling */
 
 * {
     background-color:  #06050c;

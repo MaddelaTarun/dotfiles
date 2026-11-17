@@ -1,4 +1,12 @@
 #!/bin/sh
 # Qt settings tools must not inherit a stale QT_STYLE_OVERRIDE from an
 # already-running session; qt5ct/qt6ct refuse to work while it is set.
-exec env -u QT_STYLE_OVERRIDE QT_QPA_PLATFORMTHEME=qt5ct /usr/bin/qt5ct "$@"
+#
+# This wrapper lives in ~/.local/bin, which comes before the system profile in
+# PATH, so it must exec the real binary by path. NixOS puts it in
+# /run/current-system/sw/bin; /usr/bin is the fallback for non-Nix systems.
+tool=qt5ct
+if [ -x "/run/current-system/sw/bin/$tool" ]; then
+    exec env -u QT_STYLE_OVERRIDE QT_QPA_PLATFORMTHEME=qt5ct "/run/current-system/sw/bin/$tool" "$@"
+fi
+exec env -u QT_STYLE_OVERRIDE QT_QPA_PLATFORMTHEME=qt5ct "/usr/bin/$tool" "$@"
