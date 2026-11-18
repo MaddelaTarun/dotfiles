@@ -6,9 +6,9 @@ notify() {
   command -v notify-send >/dev/null 2>&1 && notify-send -a emoji "$@"
 }
 
-# NixOS installs the Unicode emoji data via the unicode-emoji package, which
-# home-manager links to ~/.local/share/unicode/emoji.
-EMOJI_TEST="${EMOJI_TEST:-$HOME/.local/share/unicode/emoji/emoji-test.txt}"
+# Fedora's unicode-emoji package ships the data here; EMOJI_TEST can override
+# the path on other systems.
+EMOJI_TEST="${EMOJI_TEST:-/usr/share/unicode/emoji/emoji-test.txt}"
 
 if [[ ! -r "$EMOJI_TEST" ]]; then
   notify "Emoji data not found" "Install the Unicode emoji test data (unicode-emoji)."

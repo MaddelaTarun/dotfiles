@@ -8,7 +8,7 @@ set -euo pipefail
 if ! command -v greenclip >/dev/null 2>&1; then
   command -v notify-send >/dev/null 2>&1 &&
     notify-send -a clipboard "greenclip is not installed" \
-      "On NixOS it comes from haskellPackages.greenclip; rebuild the system."
+      "Install greenclip and make sure it is on your PATH."
   exit 1
 fi
 

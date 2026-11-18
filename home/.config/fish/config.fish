@@ -137,8 +137,8 @@ function extract
 end
 
 
-# Java Version Switch (only for manually installed JDKs; NixOS ships Java in the
-# Nix store, so these are skipped when the paths do not exist).
+# Java Version Switch (only for manually installed JDKs; skipped when the
+# paths do not exist).
 function java17
     if not test -x /opt/temurin-17/bin/java
         echo "java17: /opt/temurin-17 is not installed" >&2

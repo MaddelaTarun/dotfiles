@@ -1,33 +1,11 @@
 # dotfiles
 
-Personal desktop configuration for [i3](https://i3wm.org/), an X11 window
-manager. The configs under [`home/`](home/) are shared by two install paths:
-
-- **NixOS** ([`nixos/`](nixos/)) — flakes + home-manager, the primary setup.
-  home-manager links `~/dotfiles/home` into `$HOME` with
-  `mkOutOfStoreSymlink`, so the repo stays the source of truth.
-- **Other X11 machines** — [`install.sh`](install.sh) creates the same
-  symlinks and installs the few non-packaged assets.
-
-The repo mirrors the important parts of `$HOME` under [`home/`](home/), so
+Personal Fedora desktop configuration for [i3](https://i3wm.org/), an X11
+window manager. The repo mirrors the important parts of `$HOME` under
+[`home/`](home/) and [`install.sh`](install.sh) symlinks them into place, so
 editing a config in place also edits the repo.
 
-## NixOS
-
-```sh
-cd ~/dotfiles
-git add -A && git commit -m "update configs"
-
-cd nixos
-sudo nixos-rebuild switch --flake .#nixos
-```
-
-The system is i3-only (no Wayland session), uses the NVIDIA proprietary driver,
-keeps Windows in the GRUB menu, and preserves the existing btrfs `home`
-subvolume. Full install and rollback instructions are in
-[`nixos/README.md`](nixos/README.md).
-
-## Bootstrap (plain X11 machine)
+## Bootstrap
 
 ```sh
 git clone https://github.com/MaddelaTarun/dotfiles.git ~/dotfiles
@@ -55,6 +33,9 @@ autostart and session changes take effect. New fish shells pick up the fish
 config automatically, and Neovim installs its `vim.pack` plugins on first
 launch.
 
+`~/.config/environment.d` is a real directory, not a symlink: its files are
+linked individually so systemd can still add its own entries there.
+
 ## Layout
 
 ```text
@@ -72,14 +53,6 @@ home/
 ├── .gtkrc-2.0
 ├── .gitconfig
 └── .npmrc
-
-nixos/
-├── flake.nix                    # nixpkgs 26.05 + home-manager + inputs
-├── configuration.nix            # system: boot, NVIDIA, i3, PipeWire, packages
-├── hardware-configuration.nix   # btrfs subvolumes, /boot, ESP
-├── home.nix                     # dotfile links (mkOutOfStoreSymlink)
-├── packages/                    # Liga SFMono + Notwaita cursor derivations
-└── README.md                    # install / rollback instructions
 ```
 
 `~/.config` itself is never symlinked — only its children are — so unrelated
@@ -169,8 +142,7 @@ git commit -m "bump nvim config"
 
 - i3, i3status, rofi, kitty, picom
 - `.Xresources` (cursor theme/size)
-- greenclip (clipboard history config; the daemon comes from the distro on
-  NixOS and from a static binary elsewhere)
+- greenclip (clipboard history config; install the binary separately)
 - flameshot (screenshot tool config)
 - fish, starship, tmux, zathura, btop
 - Neovim (`vim.pack`, separate submodule), fastfetch
@@ -200,13 +172,7 @@ git commit -m "update configs"
 git push
 ```
 
-On NixOS, rebuild after adding/removing a link or changing a system option:
-
-```sh
-sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixos
-```
-
-On another plain X11 machine, or after a reinstall:
+After a reinstall:
 
 ```sh
 cd ~/dotfiles
@@ -220,11 +186,9 @@ git submodule update --init --recursive
 - `home/.config/i3/config.d/30-startup.conf` sets the display mode for
   `HDMI-0` and points at another wallpaper under `~/Pictures/Wallpapers/...`;
   adjust both for your hardware.
-- On NixOS, greenclip is `haskellPackages.greenclip`. Do not keep an old static
-  binary at `~/.local/bin/greenclip`: it shadows the packaged one.
-- The kitty font is selected by family name (`Liga SFMono Nerd Font`). On
-  NixOS it is installed system-wide from the `sf-mono-liga` flake input; on
-  other machines copy the files to `~/.local/share/fonts` and run `fc-cache`.
+- The kitty font is selected by family name (`Liga SFMono Nerd Font`), so the
+  files only need to be installed in `~/.local/share/fonts` and picked up with
+  `fc-cache`.
 - `home/.gtkrc-2.0` was exported by nwg-look. Running nwg-look again will
   rewrite it through the symlink.
 - Flatpak apps do not share the host `XDG_CONFIG_HOME`, so GTK inside the
@@ -237,7 +201,6 @@ git submodule update --init --recursive
 
 ## Packages and assets
 
-On NixOS every package is declared in
-[`nixos/configuration.nix`](nixos/configuration.nix); see
-[`packages.txt`](packages.txt) for the full list and where the non-nixpkgs
-pieces come from. `install.sh` does not install packages.
+See [`packages.txt`](packages.txt) for the Fedora package list, the manually
+installed fonts/cursors, and the Flatpak apps. `install.sh` does not install
+packages.

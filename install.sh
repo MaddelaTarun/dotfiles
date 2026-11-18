@@ -160,7 +160,7 @@ done
 # Never link ~/.config itself; only its children.
 link_children "$SOURCE_DIR/.config" "$HOME/.config"
 
-# home-manager writes ~/.config/environment.d/10-home-manager.conf, so this
+# systemd and other tools write files into ~/.config/environment.d, so this
 # directory must stay a real directory instead of a symlink into the repo.
 # Link its files individually.
 ENVD_SRC="$SOURCE_DIR/.config/environment.d"
